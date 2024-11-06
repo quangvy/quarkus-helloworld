@@ -1,5 +1,6 @@
 package com.example
 
+import jakarta.annotation.security.RolesAllowed
 import jakarta.validation.Valid
 import jakarta.ws.rs.GET
 import jakarta.ws.rs.POST
@@ -19,6 +20,7 @@ class ExampleResource {
 
     @POST
     @Operation(summary = "Create a new execution")
+    @RolesAllowed("**")
     fun createExecution(
         @Valid body: CreateExecutionRequest,
     ): RestResponse<Unit> {

@@ -1,6 +1,7 @@
 plugins {
     kotlin("jvm") version "2.0.10"
     kotlin("plugin.allopen") version "2.0.10"
+    kotlin("kapt")
     id("io.quarkus")
 }
 
@@ -15,18 +16,36 @@ val quarkusPlatformVersion: String by project
 
 dependencies {
     implementation(enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}"))
-    implementation("io.quarkus:quarkus-rest-jackson")
-    implementation("io.quarkus:quarkus-kotlin")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-    implementation("io.quarkus:quarkus-arc")
+    implementation("cz.jirutka.rsql:rsql-parser:2.1.0")
     implementation("io.quarkus:quarkus-container-image-jib")
-    implementation("io.quarkus:quarkus-rest")
-    implementation("io.quarkus:quarkus-smallrye-openapi")
+    implementation("io.quarkus:quarkus-hibernate-orm-panache-kotlin")
     implementation("io.quarkus:quarkus-hibernate-validator")
     implementation("io.quarkus:quarkus-rest-jackson")
+    implementation("io.quarkus:quarkus-kotlin")
+    implementation("io.quarkus:quarkus-logging-json")
+    implementation("io.quarkus:quarkus-liquibase")
+    implementation("io.quarkus:quarkus-opentelemetry")
+    implementation("io.quarkus:quarkus-rest-client")
+    implementation("io.quarkus:quarkus-rest-client-reactive-jackson")
+    implementation("io.quarkus:quarkus-smallrye-health")
+    implementation("io.quarkus:quarkus-smallrye-jwt")
+    implementation("io.quarkus:quarkus-smallrye-openapi")
+    implementation("org.mapstruct:mapstruct:1.6.0")
+    implementation("io.quarkus:quarkus-messaging-kafka")
+    implementation("com.auth0:java-jwt:4.2.1")
+    implementation("com.fasterxml.jackson.core:jackson-databind")
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+
+    annotationProcessor("org.mapstruct:mapstruct-processor:1.6.0")
+
+    compileOnly("com.fasterxml.jackson.core:jackson-databind")
+
 
     testImplementation("io.quarkus:quarkus-junit5")
+    testImplementation("io.quarkus:quarkus-junit5-mockito")
     testImplementation("io.rest-assured:rest-assured")
+    testImplementation("org.mockito.kotlin:mockito-kotlin:3.2.0")
+    testImplementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 }
 
 group = "com.example"
